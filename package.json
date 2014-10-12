@@ -1,0 +1,20 @@
+{
+  "name": "empire-state-building-color",
+  "version": "0.0.0",
+  "description": "Node App that scrapes Empire State Building color website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Lindeboom",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "cheerio": "~0.17.0",
+    "express": "~4.9.7",
+    "request": "~2.45.0",
+    "lodash": "~2.4.1",
+    "jade": "~1.7.0",
+    "path": "~0.4.9",
+    "dateformat": "~1.0.8"
+  }
+}
