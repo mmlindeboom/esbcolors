@@ -6,6 +6,8 @@ var express = require('express'),
 	request = require('request'),
 	cheerio = require('cheerio'),
 	format = require('dateformat'),
+	linkedList = require('linkedlist'),
+	colorsArr = require('./colors.js'),
 	app     = express();
 
 
@@ -17,7 +19,8 @@ app.use(express.static(path.join(__dirname, '/')));
 
 //Helper functions
 function matchColors(description, colors) {
-	var des = description.toLowerCase().split(' ');
+	var des = description.toLowerCase().replace(/\.|\,/g, '').split(' ');
+
 	return _.intersection(des, colors);
 }
 
@@ -58,20 +61,18 @@ function scrape(url, done) {
 			reason, 
 			date = new Date(),
 			description,
-			colorsArr = ['red', 'orange', 'yellow', 'green', 'blue', 'violet', 'white'],
 			json = {};
 
 		json.date = format(date, 'dddd, mmmm dS, yyyy');
 
-		$('.lighting-desc').filter(function(){
+		$('.view-empty').find('.lighting-desc').filter(function(){
 			var data = $(this);
 			json.description = data.text();
 		});
 		colors = matchColors(json.description, colorsArr);
-
 		if (colors.length > 1) {
 			colors.splice(colors.length-1, 0, 'and');
-			json.color = colors.join('');
+			json.color = colors.join(', ').replace('and,', 'and');
 		} else {
 			json.color = colors.join('');
 		}

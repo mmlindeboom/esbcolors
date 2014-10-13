@@ -1,23 +1,31 @@
 doctype
 html
 	head
-		title 
+		title
 			if color !== ''
 				Why is the Empire State Building #{color}?
-			else 
+			else
 				Why is the Empire State Building that color?
 		meta(name='Handheldfriendly', content='True')
 		meta(name='viewport', content='initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
 		meta(name='MobileOptimized', content='320')
+		script(src="//use.typekit.net/ftn6mkc.js")
+		script.
+			try{Typekit.load();}catch(e){}
 		link(type='text/css', rel='stylesheet', href='styles/reset.css')
 		link(type='text/css', rel='stylesheet', href='styles/style.css')
 	body
 		header
-			h3 #{date}
-			.circular
-			if color !== ''
-				h1.todays-color Why is the Empire State Building <br> lit up #{color}?
+			.circular-outer
+				.circular
+
 		.main-container
 			.content
-				h2 Occassion:
-				p #{description}
+				if color !== ''
+					h1 Today 
+					h3 the Empire State Building is
+					h1.todays-color #{color}
+					h3 because
+					p #{description}
+
+	
