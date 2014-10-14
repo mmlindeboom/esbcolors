@@ -6,7 +6,6 @@ var express = require('express'),
 	request = require('request'),
 	cheerio = require('cheerio'),
 	format = require('dateformat'),
-	linkedList = require('linkedlist'),
 	colorsArr = require('./colors.js'),
 	app     = express();
 
@@ -28,9 +27,13 @@ function matchColors(description, colors) {
 	var url = 'http://www.esbnyc.com/explore/tower-lights';
 	request(url, function(err, res, html){
 		var $ = cheerio.load(html),
-			img = $('.view-tower-lighting .view-empty p').find('img');
+			img = $('.view-tower-lighting').find('img');
+			if(_.isUndefined(img[2])) {
+				console.log('Image doesn\'t exist');
+				return;
+			}
 			writeStream = fs.createWriteStream('images/esb.jpg');
-			path  = img[0].attribs.src.split('?')[0];
+			path  = img[2].attribs.src.split('?')[0];
 
 		http.get({
 			host:'www.esbnyc.com',
@@ -65,7 +68,7 @@ function scrape(url, done) {
 
 		json.date = format(date, 'dddd, mmmm dS, yyyy');
 
-		$('.view-empty').find('.lighting-desc').filter(function(){
+		$('.calendar-results').find('.lighting-desc').filter(function(){
 			var data = $(this);
 			json.description = data.text();
 		});
