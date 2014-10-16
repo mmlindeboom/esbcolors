@@ -8,7 +8,7 @@ var express = require('express'),
 	cheerio = require('cheerio'),
 	format = require('dateformat'),
 	colorsArr = require('./colors.js'),
-	useDefaultImage;
+	useDefaultImage,
 	app     = express();
 
 
