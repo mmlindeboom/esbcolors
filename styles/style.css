@@ -43,7 +43,7 @@ header .circular {
 	border-radius: 11.25em;
 	-webkit-border-radius: 11.25em;
 	-moz-border-radius: 11.25em;
-	background:url(images/esb.jpg) no-repeat;
+	background:url(../images/esb.jpg) no-repeat;
 	background-size:cover;
 	background-position:50%;
 }
