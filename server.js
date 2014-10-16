@@ -107,7 +107,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/postreceive', function(req, res){
-	var child = exec('git pull', function(error, stdout, stderr){
+	var child = exec('git pull master', function(error, stdout, stderr){
 		if (error) throw error;
 		console.log(stdout);
 	});
