@@ -63,3 +63,9 @@ header .circular {
 .todays-date {
 	color: #000
 }
+.beta-status {
+	position:absolute;
+	top:0;
+	left:0;
+	font-size:1em;
+}
