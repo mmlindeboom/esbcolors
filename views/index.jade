@@ -1,11 +1,10 @@
 doctype
 html
 	head
-		title
-			if color !== ''
-				Why is the Empire State Building #{color}?
-			else
-				Why is the Empire State Building that color?
+		if color !== ''
+			title Tonight the Empire State Building is #{color}?
+		else
+			title Why is the Empire State Building that color?
 		meta(name='Handheldfriendly', content='True')
 		meta(name='viewport', content='initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
 		meta(name='MobileOptimized', content='320')
