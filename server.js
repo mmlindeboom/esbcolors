@@ -99,7 +99,8 @@ app.get('/', function(req, res){
 		res.render('index', {
 			color: data.color,
 			description: data.description,
-			date: data.date
+			date: data.date,
+			useDefaultImage: data.useDefaultImage
 		});
 	});
 });
