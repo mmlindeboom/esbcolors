@@ -1,12 +1,14 @@
 var express = require('express'),
 	http = require('http');
 	fs = require('fs'),
+	exec = require('child_process').exec,
 	_ = require('lodash'),
 	path = require('path'),
 	request = require('request'),
 	cheerio = require('cheerio'),
 	format = require('dateformat'),
 	colorsArr = require('./colors.js'),
+	useDefaultImage;
 	app     = express();
 
 
@@ -30,6 +32,7 @@ function matchColors(description, colors) {
 			img = $('.view-tower-lighting').find('img');
 			if(_.isUndefined(img[2])) {
 				console.log('Image doesn\'t exist');
+				useDefaultImage = true;
 				return;
 			}
 			writeStream = fs.createWriteStream('images/esb.jpg');
@@ -68,6 +71,10 @@ function scrape(url, done) {
 
 		json.date = format(date, 'dddd, mmmm dS, yyyy');
 
+		if(useDefaultImage) {
+			json.useDefaultImage = useDefaultImage;
+		}
+
 		$('.calendar-results').find('.lighting-desc').filter(function(){
 			var data = $(this);
 			json.description = data.text();
@@ -95,7 +102,13 @@ app.get('/', function(req, res){
 			date: data.date
 		});
 	});
+});
 
+app.get('/postreceive', function(req, res){
+	var child = exec('git pull', function(error, stdout, stderr){
+		if (error) throw error;
+		console.log(stdout);
+	});
 });
 
 app.listen('8000');

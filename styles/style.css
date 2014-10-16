@@ -37,6 +37,9 @@ header .circular-outer {
 	-moz-border-radius: 11.25em;
 	margin:0 auto;
 }
+header .circular .default {
+	background:url(../images/default.jpg) no-repeat;
+}
 header .circular {
 	width: 18.75em;
 	height: 18.75em;

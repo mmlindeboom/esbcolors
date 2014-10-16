@@ -17,7 +17,10 @@ html
 		header
 			.beta-status beta
 			.circular-outer
-				.circular
+				if (useDefaultImage)
+					.circular
+				else 
+					.circular.default
 
 		.main-container
 			.content
