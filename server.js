@@ -106,9 +106,10 @@ app.get('/', function(req, res){
 	});
 });
 
-app.get('/postreceive', function(req, res){
-	var child = exec('git pull master', function(error, stdout, stderr){
+app.post('/postreceive', function(req, res){
+	var child = exec('git pull origin master', function(error, stdout, stderr){
 		if (error) throw error;
+		res.end();
 		console.log(stdout);
 	});
 });
