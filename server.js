@@ -10,7 +10,9 @@ var express = require('express'),
 	colorsArr = require('./colors.js'),
 	app     = express();
 	
-var useDefaultImage;
+var useDefaultImage,
+	Imagemin = require('imagemin'),
+	jpegtran = require('imagemin-jpegtran');
 
 
 //App configurations
@@ -52,6 +54,17 @@ function matchColors(description, colors) {
 
 			res.on('end', function(){
 				writeStream.end();
+				var imagemin = new Imagemin()
+				.src('images/*.jpg')
+				.dest('build/images')
+				.use(jpegtran());
+
+				imagemin.run(function (err, files) {
+					if (err) {
+						throw err;
+					}
+					console.log('Files optimized successfully!'); 
+				});
 			});
 		});
 	});
