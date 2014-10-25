@@ -8,7 +8,7 @@ var express = require('express'),
 	cheerio = require('cheerio'),
 	format = require('dateformat'),
 	colorsArr = require('./colors.js'),
-	app     = express();
+	app	= express();
 	
 var useDefaultImage,
 	Imagemin = require('imagemin'),
@@ -61,9 +61,10 @@ function matchColors(description, colors) {
 
 				imagemin.run(function (err, files) {
 					if (err) {
-						throw err;
+						console.log(err);
+						return;
 					}
-					console.log('Files optimized successfully!'); 
+					console.log('Files optimized successfully!');
 				});
 			});
 		});
