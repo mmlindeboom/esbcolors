@@ -32,4 +32,5 @@ node_modules
 
 
 #generated assets
-images/esb.jpg
+public/images/esb.jpg
+public/images/esb-mobile.jpg
