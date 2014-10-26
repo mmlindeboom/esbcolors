@@ -1,5 +1,6 @@
 var exec = require('child_process').exec,
 	scrape = require('./scrape'),
+	imageUtil = require('./imager'),
 	child;
 
 module.exports = function(app) {
@@ -7,7 +8,8 @@ module.exports = function(app) {
 
 	app.get('/', function(req, res){
 		var url = 'http://www.esbnyc.com/explore/tower-lights/calendar';
-		
+		imageUtil.getImages();
+		imageUtil.bustCache();
 		scrape(url, function(data){
 			res.render('index', {
 				color: data.color,
