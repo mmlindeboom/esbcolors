@@ -19,7 +19,7 @@ module.exports = function(app) {
 	});
 
 	app.post('/postreceive', function(req, res){
-		exec('git pull origin master && gulp sass', function(error, stdout, stderr){
+		exec('git pull origin master && gulp sass && forever restart server.js', function(error, stdout, stderr){
 			if (error) {
 				throw error;
 			}
